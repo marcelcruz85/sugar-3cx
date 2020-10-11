@@ -7,4 +7,4 @@ class cdr {
     }
 }
 
-module.exports(cdr);
+module.exports = cdr;
