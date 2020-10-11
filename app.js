@@ -4,7 +4,7 @@ var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 var CDR = require('./cdr');
-var cdr = new CDR();
+var Cdr = new CDR();
 
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
@@ -24,8 +24,8 @@ server.on('connection', function(socket) {
     console.log('A new connection has been established.');
   
     socket.on('data', function(chunk) {
-    let cdrArr = chunk.toString().split(',');
-        console.log('Data received from client: ' + cdr(cdrArr).toJson() );
+        Cdr.cdr = chunk.toString().split(',');
+        console.log('Data received from client: ' + Cdr.toJson() );
     });
 
     socket.on('end', function() {
