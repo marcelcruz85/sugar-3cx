@@ -10,7 +10,7 @@ class CDR {
     }
     toJson() {
         this.cdrJson.duration = this.cdr['0'].replace('Call ', '');
-        this.cdrJson.timeStart = this.cdr['1'] ? Date(this.cdr['1']) : null;
+        this.cdrJson.timeStart = this.cdr['1'] ? Date(this.cdr['1']).toISOString() : null;
         this.cdrJson.timeanswered = this.cdr['2'];
         this.cdrJson.timeEnd = this.cdr['3'];
 
