@@ -24,7 +24,7 @@ server.on('connection', function(socket) {
     console.log('A new connection has been established.');
   
     socket.on('data', function(chunk) {
-        Cdr.cdr = chunk;
+        Cdr.cdr = chunk.toString();
         console.log('Data received from client: ' + Cdr.toJson() );
     });
 

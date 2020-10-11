@@ -1,6 +1,6 @@
 class CDR {
     constructor(cdr){
-        this.cdr = cdr.toString().split(',');
+        this.cdr = cdr.split(',');
         this.cdrJson = {
             duration: null
         }
