@@ -6,7 +6,7 @@ class CDR {
         }
     }
     toJson() {
-        this.cdrJson.duration = this.cdr['0'];
+        this.cdrJson.duration = this.cdr['0'].replace('Call ', '');
 
         return this.cdrJson;
     }
