@@ -25,7 +25,7 @@ server.on('connection', function(socket) {
   
     socket.on('data', function(chunk) {
     let cdrArr = chunk.toString().split(',');
-        console.log('Data received from client: ' + cdr.toJson(cdrArr) );
+        console.log('Data received from client: ' + cdr(cdrArr).toJson() );
     });
 
     socket.on('end', function() {
