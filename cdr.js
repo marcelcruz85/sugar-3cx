@@ -3,7 +3,7 @@ class CDR {
         this.cdr = cdr;
     }
     toJson() {
-        return '123';
+        return this.cdr;
     }
 }
 
