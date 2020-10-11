@@ -28,7 +28,7 @@ class CDR {
             fromDispname: null,
             toDispname: null,
             finalDispname: null,
-            billCode: null,
+            billCode: null
         }
     }
     toJson() {
