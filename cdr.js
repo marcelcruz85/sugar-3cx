@@ -1,4 +1,4 @@
-class cdr {
+class CDR {
     constructor(cdr){
         this.cdr = cdr;
     }
@@ -7,4 +7,4 @@ class cdr {
     }
 }
 
-module.exports = cdr;
+module.exports = CDR;
