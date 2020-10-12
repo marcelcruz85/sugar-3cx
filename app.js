@@ -34,7 +34,7 @@ var data = JSON.stringify({"duration":"00:00:24","timeStart":"2020-10-11T20:39:1
 
 var config = {
   method: 'post',
-  url: 'https://clgup.nablasol.net/rest/v11_1/cdr-to-call',
+  url: 'http://clgup.nablasol.net/rest/v11_1/cdr-to-call',
   headers: { 
     'Content-Type': 'application/json'
   },
