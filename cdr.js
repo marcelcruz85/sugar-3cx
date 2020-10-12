@@ -1,4 +1,4 @@
-const axios = require('axios');
+import axios from 'axios';
 
 class CDR {
     constructor(cdr){
@@ -86,4 +86,4 @@ class CDR {
     }
 }
 
-module.exports = CDR;
+export default CDR;
