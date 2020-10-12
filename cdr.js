@@ -82,6 +82,7 @@ class CDR {
         .catch(function (error) {
             console.log(error);
         });
+        return 123123;
     }
 }
 
