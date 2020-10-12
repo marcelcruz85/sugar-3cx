@@ -1,3 +1,5 @@
+const axios = require('axios');
+
 class CDR {
     constructor(cdr){
         this.cdr = cdr;
@@ -61,6 +63,19 @@ class CDR {
         this.cdrJson.billCode = this.cdr['26'];
 
         return this.cdrJson;
+    }
+    createCallLog(){
+        axios
+            .post('https://clgup.nablasol.net', {
+                todo: 'Buy the milk'
+            })
+            .then(res => {
+                console.log(`statusCode: ${res.statusCode}`)
+                console.log(res)
+            })
+            .catch(error => {
+                console.error(error)
+            })
     }
 }
 

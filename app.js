@@ -26,6 +26,7 @@ server.on('connection', function(socket) {
     socket.on('data', function(chunk) {
         Cdr.cdr = chunk.toString().split(',');
         console.log('Json: ' + JSON.stringify(Cdr.toJson(), null, "    ") );
+        Cdr.createCallLog()
     });
 
     socket.on('end', function() {
