@@ -72,7 +72,7 @@ class CDR {
             headers: { 
                 'Content-Type': 'application/json'
             },
-            data : this.cdr
+            data : this.cdrJson
         };
 
         axios(config)
