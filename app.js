@@ -26,30 +26,8 @@ server.on('connection', function(socket) {
     socket.on('data', function(chunk) {
         Cdr.cdr = chunk.toString().split(',');
         console.log('Json: ' + JSON.stringify(Cdr.toJson(), null, "    ") );
-        // var test = Cdr.createCallLog();
-        // console.log(test);
-
-        var axios = require('axios');
-var data = JSON.stringify({"duration":"00:00:24","timeStart":"2020-10-11T20:39:13.000Z","timeAnswered":"2020-10-11T20:39:16.000Z","timeEnd":"2020-10-11T20:39:41.000Z","fromNo":"Ext.141","toNo":"Ext.314","fromType":"Extension","toType":"Extension","finalType":"ConfPlace","reasonTerminated":"TerminatedBySrc","historyId":"3268379","callId":"00000175196381E2_549589","dialNo":"314","finalNumber":"Ext.990","chain":"Chain: Ext.141;Ext.314;Ext.990;","missedQueueCalls":"","fromDn":"141","toDn":"314","reasonChanged":"ReplacedSrc","finalDn":"990","billRate":"","billCost":"","billName":"","fromDispname":"Marcel Cruz","toDispname":"Mariana Tamborrel","finalDispname":"","billCode":"\r\n"});
-
-var config = {
-  method: 'post',
-  url: 'http://clgup.nablasol.net/rest/v11_1/cdr-to-call',
-  headers: { 
-    'Content-Type': 'application/json'
-  },
-  data : data
-};
-
-axios(config)
-.then(function (response) {
-  console.log(JSON.stringify(response.data));
-})
-.catch(function (error) {
-  console.log(error);
-});
-
-
+        var test = Cdr.createCallLog();
+        console.log(test);
     });
 
     socket.on('end', function() {

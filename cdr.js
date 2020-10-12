@@ -66,22 +66,43 @@ class CDR {
     }
 
     createCallLog(){
-    var config = {
-            method: 'post',
-            url: 'https://clgup.nablasol.net/rest/v11_1/cdr-to-call',
-            headers: { 
-                'Content-Type': 'application/json'
-            },
-            data : this.cdrJson
-        };
 
-        axios(config)
-        .then(function (response) {
-            console.log(JSON.stringify(response.data));
-        })
-        .catch(function (error) {
-            console.log(error);
-        });
+        var https = require('follow-redirects').https;
+var fs = require('fs');
+
+var options = {
+  'method': 'GET',
+  'hostname': 'clgup.nablasol.net',
+  'path': '/rest/v11_1/cdr-to-call',
+  'headers': {
+    'Content-Type': 'application/json'
+  },
+  'maxRedirects': 20
+};
+
+var req = https.request(options, function (res) {
+  var chunks = [];
+
+  res.on("data", function (chunk) {
+    chunks.push(chunk);
+  });
+
+  res.on("end", function (chunk) {
+    var body = Buffer.concat(chunks);
+    console.log(body.toString());
+  });
+
+  res.on("error", function (error) {
+    console.error(error);
+  });
+});
+
+var postData = JSON.stringify({"duration":"00:00:24","timeStart":"2020-10-11T20:39:13.000Z","timeAnswered":"2020-10-11T20:39:16.000Z","timeEnd":"2020-10-11T20:39:41.000Z","fromNo":"Ext.141","toNo":"Ext.314","fromType":"Extension","toType":"Extension","finalType":"ConfPlace","reasonTerminated":"TerminatedBySrc","historyId":"3268379","callId":"00000175196381E2_549589","dialNo":"314","finalNumber":"Ext.990","chain":"Chain: Ext.141;Ext.314;Ext.990;","missedQueueCalls":"","fromDn":"141","toDn":"314","reasonChanged":"ReplacedSrc","finalDn":"990","billRate":"","billCost":"","billName":"","fromDispname":"Marcel Cruz","toDispname":"Mariana Tamborrel","finalDispname":"","billCode":"\r\n"});
+
+req.write(postData);
+
+req.end();
+
         return 123123;
     }
 }
