@@ -64,18 +64,24 @@ class CDR {
 
         return this.cdrJson;
     }
+
     createCallLog(){
-        axios
-            .post('https://clgup.nablasol.net', {
-                todo: 'Buy the milk'
-            })
-            .then(res => {
-                console.log(`statusCode: ${res.statusCode}`)
-                console.log(res)
-            })
-            .catch(error => {
-                console.error(error)
-            })
+    var config = {
+            method: 'post',
+            url: 'https://clgup.nablasol.net/rest/v11_1/cdr-to-call',
+            headers: { 
+                'Content-Type': 'application/json'
+            },
+            data : this.cdr
+        };
+
+        axios(config)
+        .then(function (response) {
+            console.log(JSON.stringify(response.data));
+        })
+        .catch(function (error) {
+            console.log(error);
+        });
     }
 }
 
