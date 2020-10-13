@@ -1,7 +1,7 @@
 const axios = require('axios');
 
 class CDR {
-    constructor(cdr){
+    constructor(cdr) {
         this.cdr = cdr;
         this.cdrJson = {
             duration: null,
@@ -35,9 +35,9 @@ class CDR {
     }
     toJson() {
         this.cdrJson.duration = this.cdr['0'].replace('Call ', '');
-        this.cdrJson.timeStart = this.cdr['1'] ? new Date( this.cdr['1'] ).toISOString() : null;
-        this.cdrJson.timeAnswered = this.cdr['2'] ? new Date( this.cdr['2'] ).toISOString() : null;
-        this.cdrJson.timeEnd = this.cdr['3'] ? new Date( this.cdr['3'] ).toISOString() : null;
+        this.cdrJson.timeStart = this.cdr['1'] ? new Date(this.cdr['1']).toISOString() : null;
+        this.cdrJson.timeAnswered = this.cdr['2'] ? new Date(this.cdr['2']).toISOString() : null;
+        this.cdrJson.timeEnd = this.cdr['3'] ? new Date(this.cdr['3']).toISOString() : null;
         this.cdrJson.fromNo = this.cdr['4'];
         this.cdrJson.toNo = this.cdr['5'];
         this.cdrJson.fromType = this.cdr['6'];
@@ -65,28 +65,36 @@ class CDR {
         return this.cdrJson;
     }
 
-    createCallLog(){
-    var data = {
-        direction: this.cdrJson.fromType === 'Line' ? 'Inbound' : 'Outbound',
-        toNo: this.cdrJson.toNo,
-        status: this.cdrJson.fromType != 'Line' && this.cdrJson.timeAnswered === '' ? 'Not Answer' : 'Completed'
-    }
-    var config = {
+    createCallLog() {
+        var status = null;
+        if(this.cdrJson.fromType != 'Line' && this.cdrJson.timeAnswered === '' ){
+            status = 'Not Answer'
+        } else if (this.cdrJson.toType == 'VMail' ) {
+            status = 'Voice Mail'
+        } else {
+            
+        }
+        var data = {
+            direction: this.cdrJson.fromType === 'Line' ? 'Inbound' : 'Outbound',
+            toNo: this.cdrJson.toNo,
+            status: status
+        }
+        var config = {
             method: 'post',
             url: 'https://clgup.nablasol.net/rest/v11_1/cdr-to-call',
-            headers: { 
+            headers: {
                 'Content-Type': 'application/json'
             },
-            data : data
+            data: data
         };
 
         axios(config)
-        .then(function (response) {
-            console.log(JSON.stringify(response.data));
-        })
-        .catch(function (error) {
-            console.log(error);
-        });
+            .then(function (response) {
+                console.log(JSON.stringify(response.data));
+            })
+            .catch(function (error) {
+                console.log(error);
+            });
         return 123123;
     }
 }
