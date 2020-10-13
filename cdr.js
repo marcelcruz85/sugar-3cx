@@ -68,6 +68,7 @@ class CDR {
     createCallLog() {
         var status = null;
         var agent = this.cdrJson.fromType == 'Extension' ? this.cdrJson.fromDn : this.cdrJson.toDn;
+
         if(this.cdrJson.fromType != 'Line' && this.cdrJson.timeAnswered === '' ){
             status = 'Not Answer'
         } else if (this.cdrJson.toType == 'VMail' ) {
@@ -75,11 +76,14 @@ class CDR {
         } else {
             status = 'Completed'
         }
+
         var data = {
             direction: this.cdrJson.fromType === 'Line' ? 'Inbound' : 'Outbound',
             toNo: this.cdrJson.toNo,
-            status: status
+            status: status,
+            agent: agent
         }
+        
         var config = {
             method: 'post',
             url: 'https://clgup.nablasol.net/rest/v11_1/cdr-to-call',
