@@ -67,7 +67,8 @@ class CDR {
 
     createCallLog(){
     var data = {
-        direction: this.cdrJson.fromType === 'Line' ? 'Inbound' : 'Outbound'
+        direction: this.cdrJson.fromType === 'Line' ? 'Inbound' : 'Outbound',
+        toNo: this.cdrJson.toNo
     }
     var config = {
             method: 'post',
