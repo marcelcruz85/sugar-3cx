@@ -1,7 +1,7 @@
 const axios = require('axios');
 
 class CDR {
-    constructor(cdr) {
+    constructor(cdr){
         this.cdr = cdr;
         this.cdrJson = {
             duration: null,
@@ -35,9 +35,9 @@ class CDR {
     }
     toJson() {
         this.cdrJson.duration = this.cdr['0'].replace('Call ', '');
-        this.cdrJson.timeStart = this.cdr['1'] ? new Date(this.cdr['1']).toISOString() : null;
-        this.cdrJson.timeAnswered = this.cdr['2'] ? new Date(this.cdr['2']).toISOString() : null;
-        this.cdrJson.timeEnd = this.cdr['3'] ? new Date(this.cdr['3']).toISOString() : null;
+        this.cdrJson.timeStart = this.cdr['1'] ? new Date( this.cdr['1'] ).toISOString() : null;
+        this.cdrJson.timeAnswered = this.cdr['2'] ? new Date( this.cdr['2'] ).toISOString() : null;
+        this.cdrJson.timeEnd = this.cdr['3'] ? new Date( this.cdr['3'] ).toISOString() : null;
         this.cdrJson.fromNo = this.cdr['4'];
         this.cdrJson.toNo = this.cdr['5'];
         this.cdrJson.fromType = this.cdr['6'];
@@ -65,39 +65,23 @@ class CDR {
         return this.cdrJson;
     }
 
-    createCallLog() {
-
-        var https = require('follow-redirects').https;
-        var fs = require('fs');
-        
-        var options = {
-          'method': 'POST',
-          'hostname': 'clgup.nablasol.net',
-          'path': '/rest/v11_1/cdr-to-call',
-          'headers': {
-          },
-          'maxRedirects': 20
+    createCallLog(){
+    var config = {
+            method: 'post',
+            url: 'https://clgup.nablasol.net/rest/v11_1/cdr-to-call',
+            headers: { 
+                'Content-Type': 'application/json'
+            },
+            data : this.cdrJson
         };
-        
-        var req = https.request(options, function (res) {
-          var chunks = [];
-        
-          res.on("data", function (chunk) {
-            chunks.push(chunk);
-          });
-        
-          res.on("end", function (chunk) {
-            var body = Buffer.concat(chunks);
-            console.log(body.toString());
-          });
-        
-          res.on("error", function (error) {
-            console.error(error);
-          });
-        });
-        
-        req.end();
 
+        axios(config)
+        .then(function (response) {
+            console.log(JSON.stringify(response.data));
+        })
+        .catch(function (error) {
+            console.log(error);
+        });
         return 123123;
     }
 }
