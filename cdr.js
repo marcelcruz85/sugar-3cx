@@ -72,7 +72,7 @@ class CDR {
 
         var options = {
             'method': 'GET',
-            'hostname': 'sugar.consumerlaw.com',
+            'hostname': 'clgup.nablasol.net',
             'path': '/rest/v11_1/cdr-to-call',
             'headers': {
                 'Content-Type': 'application/json'
