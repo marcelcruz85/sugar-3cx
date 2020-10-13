@@ -67,6 +67,7 @@ class CDR {
 
     createCallLog() {
         var status = null;
+        var agent = this.cdrJson.fromType == 'Extension' ? this.cdrJson.fromDn : this.cdrJson.toDn;
         if(this.cdrJson.fromType != 'Line' && this.cdrJson.timeAnswered === '' ){
             status = 'Not Answer'
         } else if (this.cdrJson.toType == 'VMail' ) {
