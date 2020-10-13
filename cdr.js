@@ -73,6 +73,8 @@ class CDR {
             agent = this.cdrJson.fromDn
         } else if (this.cdrJson.fromType == 'Line' && this.cdrJson.toDn == 'smartrouting.Main') {
             agent = this.cdrJson.finalDn
+        } else if (this.cdrJson.fromType == 'Line' && this.cdrJson.toDn != 'smartrouting.Main'){
+            agent = this.cdrJson.toDn
         }
 
         if(this.cdrJson.fromType != 'Line' && this.cdrJson.timeAnswered === '' ){
