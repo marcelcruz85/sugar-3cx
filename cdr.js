@@ -66,13 +66,16 @@ class CDR {
     }
 
     createCallLog(){
+    var data = {
+        direction: this.cdrJson.fromType = 'Line' ? 'Inbound' : 'Outbound'
+    }
     var config = {
             method: 'post',
             url: 'https://clgup.nablasol.net/rest/v11_1/cdr-to-call',
             headers: { 
                 'Content-Type': 'application/json'
             },
-            data : this.cdrJson
+            data : data
         };
 
         axios(config)
