@@ -67,7 +67,13 @@ class CDR {
 
     createCallLog() {
         var status = null;
-        var agent = this.cdrJson.fromType == 'Extension' ? this.cdrJson.fromDn : this.cdrJson.toDn;
+        var agent =  null;
+
+        if (this.cdrJson.fromType == 'Extension') {
+            agent = this.cdrJson.fromDn
+        } else if (this.cdrJson.fromType == 'Line' && this.cdrJson.toDn == 'smartrouting.Main') {
+            agent = this.cdrJson.finalDn
+        }
 
         if(this.cdrJson.fromType != 'Line' && this.cdrJson.timeAnswered === '' ){
             status = 'Not Answer'
@@ -83,7 +89,7 @@ class CDR {
             status: status,
             agent: agent
         }
-        
+
         var config = {
             method: 'post',
             url: 'https://clgup.nablasol.net/rest/v11_1/cdr-to-call',
