@@ -72,7 +72,7 @@ class CDR {
         } else if (this.cdrJson.toType == 'VMail' ) {
             status = 'Voice Mail'
         } else {
-            
+            status = 'Completed'
         }
         var data = {
             direction: this.cdrJson.fromType === 'Line' ? 'Inbound' : 'Outbound',
