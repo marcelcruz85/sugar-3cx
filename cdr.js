@@ -86,6 +86,8 @@ class CDR {
         }
 
         var data = {
+            fromType: this.cdrJson.fromType,
+            toType: this.cdrJson.toType,
             direction: this.cdrJson.fromType === 'Line' ? 'Inbound' : 'Outbound',
             toNo: this.cdrJson.toNo,
             status: status,
