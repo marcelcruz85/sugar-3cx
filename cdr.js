@@ -87,14 +87,17 @@ class CDR {
         } else if ( this.cdrJson.fromType == 'Line' && this.cdrJson.toType == 'VMail'){
             status = 'VoiceMail';
             direction = 'Inbound';
+        } else if ( this.cdrJson.fromType == 'Line' && this.cdrJson.toType == 'ServiceCall'){
+            status = 'Missed';
+            direction = 'Inbound';
         }
 
         var data = {
             fromType: this.cdrJson.fromType,
             toType: this.cdrJson.toType,
             direction: direction,
-            toNo: this.cdrJson.toNo,
             status: status,
+            toNo: this.cdrJson.toNo,
             agent: agent
         }
 
