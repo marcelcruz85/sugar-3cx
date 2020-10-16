@@ -82,9 +82,11 @@ class CDR {
         if ( this.cdrJson.fromType == 'Extension' && this.cdrJson.toType == 'Line' ) {
             status = 'Completed';
             direction = 'Outbound';
+            clientNo = this.cdrJson.toNo;
         } else if ( this.cdrJson.fromType == 'Extension' && this.cdrJson.toType == 'LineSet'){
             status = 'NotAnswer';
             direction = 'Outbound';
+            clientNo = this.cdrJson.toNo;
         } else if ( this.cdrJson.fromType == 'Line' && this.cdrJson.toType == 'Extension'){
             status = 'Completed';
             direction = 'Inbound';
