@@ -71,22 +71,24 @@ class CDR {
         var direction = null;
         var clientNo = null;
 
-        if (this.cdrJson.fromType == 'Extension') {
-            agent = this.cdrJson.fromDn
-        } else if (this.cdrJson.fromType == 'Line' && this.cdrJson.toDn == 'smartrouting.Main') {
-            agent = this.cdrJson.finalDn
-        } else if (this.cdrJson.fromType == 'Line' && this.cdrJson.toDn != 'smartrouting.Main'){
-            agent = this.cdrJson.toDn
-        }
+        // if (this.cdrJson.fromType == 'Extension') {
+        //     agent = this.cdrJson.fromDn
+        // } else if (this.cdrJson.fromType == 'Line' && this.cdrJson.toDn == 'smartrouting.Main') {
+        //     agent = this.cdrJson.finalDn
+        // } else if (this.cdrJson.fromType == 'Line' && this.cdrJson.toDn != 'smartrouting.Main'){
+        //     agent = this.cdrJson.toDn
+        // }
 
         if ( this.cdrJson.fromType == 'Extension' && this.cdrJson.toType == 'Line' ) {
             status = 'Completed';
             direction = 'Outbound';
             clientNo = this.cdrJson.toNo;
+            agent = this.cdrJson.fromDn
         } else if ( this.cdrJson.fromType == 'Extension' && this.cdrJson.toType == 'LineSet'){
             status = 'NotAnswer';
             direction = 'Outbound';
             clientNo = this.cdrJson.toNo;
+            agent = this.cdrJson.fromDn
         } else if ( this.cdrJson.fromType == 'Line' && this.cdrJson.toType == 'Extension'){
             status = 'Completed';
             direction = 'Inbound';
