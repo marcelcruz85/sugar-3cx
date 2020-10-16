@@ -84,6 +84,9 @@ class CDR {
         } else if ( this.cdrJson.fromType == 'Extension' && this.cdrJson.toType == 'LineSet'){
             status = 'NotAnswer';
             direction = 'Outbound';
+        } else if ( this.cdrJson.fromType == 'Line' && this.cdrJson.toType == 'Extension'){
+            status = 'Completed';
+            direction = 'Inbound';s
         } else if ( this.cdrJson.fromType == 'Line' && this.cdrJson.toType == 'VMail'){
             status = 'VoiceMail';
             direction = 'Inbound';
