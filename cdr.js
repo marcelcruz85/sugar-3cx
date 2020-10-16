@@ -78,13 +78,13 @@ class CDR {
             agent = this.cdrJson.toDn
         }
 
-        if ( this.cdrJson.fromType == 'Extension' && this.cdrJson.fromType == 'Line' ) {
+        if ( this.cdrJson.fromType == 'Extension' && this.cdrJson.toType == 'Line' ) {
             status = 'Completed';
             direction = 'Outbound';
-        } else if ( this.cdrJson.fromType == 'Extension' && this.cdrJson.fromType == 'LineSet'){
+        } else if ( this.cdrJson.fromType == 'Extension' && this.cdrJson.toType == 'LineSet'){
             status = 'NotAnswer';
             direction = 'Outbound';
-        } else if ( this.cdrJson.fromType == 'Line' && this.cdrJson.fromType == 'VMail'){
+        } else if ( this.cdrJson.fromType == 'Line' && this.cdrJson.toType == 'VMail'){
             status = 'VoiceMail';
             direction = 'Inbound';
         }
