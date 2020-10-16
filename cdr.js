@@ -68,6 +68,7 @@ class CDR {
     createCallLog() {
         var status = null;
         var agent =  null;
+        var direction = null;
 
         if (this.cdrJson.fromType == 'Extension') {
             agent = this.cdrJson.fromDn
@@ -77,18 +78,21 @@ class CDR {
             agent = this.cdrJson.toDn
         }
 
-        if(this.cdrJson.fromType != 'Line' && this.cdrJson.timeAnswered === '' ){
-            status = 'Not Answer'
-        } else if (this.cdrJson.toType == 'VMail' ) {
-            status = 'Voice Mail'
-        } else {
-            status = 'Completed'
+        if ( this.cdrJson.fromType == 'Extension' && this.cdrJson.fromType == 'Line' ) {
+            status = 'Completed';
+            direction = 'Outbound';
+        } else if ( this.cdrJson.fromType == 'Extension' && this.cdrJson.fromType == 'LineSet'){
+            status = 'NotAnswer';
+            direction = 'Outbound';
+        } else if ( this.cdrJson.fromType == 'Line' && this.cdrJson.fromType == 'VMail'){
+            status = 'VoiceMail';
+            direction = 'Inbound';
         }
 
         var data = {
             fromType: this.cdrJson.fromType,
             toType: this.cdrJson.toType,
-            direction: this.cdrJson.fromType === 'Line' ? 'Inbound' : 'Outbound',
+            direction: direction,
             toNo: this.cdrJson.toNo,
             status: status,
             agent: agent
