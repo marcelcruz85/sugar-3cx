@@ -88,7 +88,7 @@ class CDR {
             status = 'NotAnswer';
             direction = 'Outbound';
             clientNo = this.cdrJson.toNo;
-            agent = this.cdrJson.fromDn
+            agent = this.cdrJson.fromDn;
         } else if ( this.cdrJson.fromType == 'Line' && this.cdrJson.toType == 'Extension'){
             status = 'Completed';
             direction = 'Inbound';
@@ -97,10 +97,12 @@ class CDR {
             status = 'VoiceMail';
             direction = 'Inbound';
             clientNo = this.cdrJson.fromNo;
+            agent = this.cdrJson.toDn;
         } else if ( this.cdrJson.fromType == 'Line' && this.cdrJson.toType == 'ServiceCall'){
             status = 'Missed';
             direction = 'Inbound';
             clientNo = this.cdrJson.fromNo;
+            agent = this.cdrJson.finalDn ? this.cdrJson.finalDn : 'Smart Routing';
         }
 
         var data = {
