@@ -108,7 +108,7 @@ class CDR {
 
         var data = {
             duration: this.cdrJson.duration ? this.cdrJson.duration : '00:00:00',
-            date: this.cdrJson.timeStart,
+            date: Date(this.cdrJson.timeStart).toString(),
             agent: agent,
             phone_number: clientNo,
             fromType: this.cdrJson.fromType,
