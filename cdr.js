@@ -113,8 +113,8 @@ class CDR {
             phone_number: clientNo,
             // fromType: this.cdrJson.fromType,
             // toType: this.cdrJson.toType,
-            // direction: direction,
-            // status: status
+            direction: direction,
+            status: status
         }
 
         var config = {
