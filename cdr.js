@@ -107,11 +107,12 @@ class CDR {
         }
 
         var data = {
+            duration: this.cdrJson.duration,
             fromType: this.cdrJson.fromType,
             toType: this.cdrJson.toType,
             direction: direction,
             status: status,
-            clientNo: clientNo,
+            phone_number: clientNo,
             agent: agent
         }
 
