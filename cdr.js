@@ -107,7 +107,7 @@ class CDR {
         }
 
         var data = {
-            duration: this.cdrJson.duration,
+            duration: this.cdrJson.duration ? this.cdrJson.duration : '00:00:00',
             fromType: this.cdrJson.fromType,
             toType: this.cdrJson.toType,
             direction: direction,
