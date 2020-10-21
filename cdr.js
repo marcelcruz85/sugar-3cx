@@ -111,10 +111,10 @@ class CDR {
             date: Date(this.cdrJson.timeStart),
             agent: agent,
             phone_number: clientNo,
-            fromType: this.cdrJson.fromType,
-            toType: this.cdrJson.toType,
-            direction: direction,
-            status: status
+            // fromType: this.cdrJson.fromType,
+            // toType: this.cdrJson.toType,
+            // direction: direction,
+            // status: status
         }
 
         var config = {
