@@ -95,7 +95,7 @@ class CDR {
             clientNo = this.cdrJson.fromNo;
             agent = this.cdrJson.toDn;
         } else if ( this.cdrJson.fromType == 'Line' && this.cdrJson.toType == 'VMail'){
-            status = 'VoiceMail';
+            status = 'Voicemail';
             direction = 'Inbound';
             clientNo = this.cdrJson.fromNo;
             agent = this.cdrJson.toDn;
