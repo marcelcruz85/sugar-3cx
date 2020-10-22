@@ -89,7 +89,7 @@ class CDR {
             direction = 'Outbound';
             clientNo = this.cdrJson.toNo;
             agent = this.cdrJson.fromDn;
-        } else if ( this.cdrJson.fromType == 'Line' && this.cdrJson.toType == 'Extension'){
+        } else if ( this.cdrJson.fromType == 'Line' && this.cdrJson.toType == 'Extension'  && this.cdrJson.timeAnswered != null){
             status = 'Held';
             direction = 'Inbound';
             clientNo = this.cdrJson.fromNo;
@@ -100,6 +100,11 @@ class CDR {
             clientNo = this.cdrJson.fromNo;
             agent = this.cdrJson.toDn;
         } else if ( this.cdrJson.fromType == 'Line' && this.cdrJson.toType == 'ServiceCall'){
+            status = 'Missed';
+            direction = 'Inbound';
+            clientNo = this.cdrJson.fromNo;
+            agent = this.cdrJson.finalDn ? this.cdrJson.finalDn : 'Smart Routing';
+        } else if ( this.cdrJson.fromType == 'Line' && this.cdrJson.toType == 'Extension' && this.cdrJson.timeAnswered == null){
             status = 'Missed';
             direction = 'Inbound';
             clientNo = this.cdrJson.fromNo;
