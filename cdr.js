@@ -108,7 +108,7 @@ class CDR {
             status = 'Missed';
             direction = 'Inbound';
             clientNo = this.cdrJson.fromNo;
-            agent = this.cdrJson.finalDn ? this.cdrJson.finalDn : 'Smart Routing';
+            agent = this.cdrJson.toDn;
         }
 
         var data = {
