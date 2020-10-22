@@ -80,17 +80,17 @@ class CDR {
         // }
 
         if ( this.cdrJson.fromType == 'Extension' && this.cdrJson.toType == 'Line' ) {
-            status = 'Completed';
+            status = 'Held';
             direction = 'Outbound';
             clientNo = this.cdrJson.toNo;
             agent = this.cdrJson.fromDn
         } else if ( this.cdrJson.fromType == 'Extension' && this.cdrJson.toType == 'LineSet'){
-            status = 'NotAnswer';
+            status = 'Not Answered';
             direction = 'Outbound';
             clientNo = this.cdrJson.toNo;
             agent = this.cdrJson.fromDn;
         } else if ( this.cdrJson.fromType == 'Line' && this.cdrJson.toType == 'Extension'){
-            status = 'Completed';
+            status = 'Held';
             direction = 'Inbound';
             clientNo = this.cdrJson.fromNo;
             agent = this.cdrJson.toDn;
@@ -113,8 +113,8 @@ class CDR {
             phone_number: clientNo,
             // fromType: this.cdrJson.fromType,
             // toType: this.cdrJson.toType,
-            direction: direction,
-            status: status
+            call_direction: direction,
+            call_status: status
         }
 
         var config = {
