@@ -119,7 +119,7 @@ class CDR {
 
         var config = {
             method: 'post',
-            url: 'https://clgup.nablasol.net/rest/v11_1/cdr-to-call',
+            url: 'https://clgup.nablasol.net/rest/v11_1/create-call-record',
             headers: {
                 'Content-Type': 'application/json'
             },
